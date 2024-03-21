@@ -12,16 +12,16 @@ local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t
 -- Window ( name <string> , descr <string> , logo <string> ) --
 local Window = UI:NewWindow('SWITCH HUB','Series A B C D','rbxassetid://6886692638')
 
--- Menu ( name <string> , descr <string> , logo <string> icon name in https://raw.githubusercontent.com/evoincorp/lucideblox/master/src/modules/util/icons.json) --
+-- Menu ( name <string> , descr <string> , icon <string> icon name in https://raw.githubusercontent.com/evoincorp/lucideblox/master/src/modules/util/icons.json) --
 
 local MenuChangeLog = Window:AddMenu('Change Log',"i don't know",'hash','change')
 local MenuFunctions = Window:AddMenu('Functions',"Script Auto Fuck",'ticket','tab')
 
--- Tab ( name <string> , descr <string> , logo <string> ) --
+-- Tab ( name <string> , descr <bool> , icon <string> ) --
 local TabFunctions = MenuFunctions:AddTab('Main','Auto Kaitun','box-select')
 local TabTeleport = MenuFunctions:AddTab('Teleport','Teleport (anti chaet)','list')
 
--- Section ( name <string> , descr <string> , text <string> , logo <string> ) --
+-- Section ( name <string> , descr <string> , text <string> , icon <string> ) --
 local ChangeLogSection = MenuChangeLog:AddTab():AddSection('Change Log' , 'Idk')
 local MainSection = TabFunctions:AddSection('Auto Farm','auto kaitun, level from 1 to 700 levels in 10s','afk farm kaitun script','book-open')
 local TeleportSection = TabTeleport:AddSection('Teleports','teleport to porn hub','teleport and steal your discord token','server')
