@@ -26,8 +26,10 @@ local ChangeLogSection = MenuChangeLog:AddTab():AddSection('Change Log' , 'Idk')
 local MainSection = TabFunctions:AddSection('Auto Farm','auto kaitun, level from 1 to 700 levels in 10s','afk farm kaitun script','book-open')
 local TeleportSection = TabTeleport:AddSection('Teleports','teleport to porn hub','teleport and steal your discord token','server')
 
--- Toggle ( name <string> , default <string> , callback <function> ) --
+-- Label ( name <string> ) --
+MainSection:AddLabel('Auto Farm')
 
+-- Toggle ( name <string> , default <string> , callback <function> ) --
 MainSection:AddToggle('Auto Farm',false,function(v)
     print(v)
 end)
