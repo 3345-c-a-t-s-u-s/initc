@@ -29,7 +29,7 @@ local TeleportSection = TabTeleport:AddSection('Teleports','teleport to porn hub
 -- Label ( name <string> ) --
 MainSection:AddLabel('Auto Farm')
 
--- Toggle ( name <string> , default <string> , callback <function> ) --
+-- Toggle ( name <string> , default <bool> , callback <function> ) --
 MainSection:AddToggle('Auto Farm',false,function(v)
     print(v)
 end)
