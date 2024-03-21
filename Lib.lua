@@ -132,7 +132,7 @@ end
 
 local function scrolling_connectY(scrollframe:ScrollingFrame)
 	task.spawn(function()
-		local addres = 45
+		local addres = 1
 		local UIListLayout:UIListLayout = scrollframe:WaitForChild('UIListLayout',9999999)
 		scrollframe.CanvasSize=UDim2.new(0,0,0,UIListLayout.AbsoluteContentSize.Y+addres)
 
@@ -144,7 +144,7 @@ end
 
 local function scrolling_connectX(scrollframe:ScrollingFrame)
 	task.spawn(function()
-		local addres = 45
+		local addres = 1
 		local UIListLayout:UIListLayout = scrollframe:WaitForChild('UIListLayout',9999999)
 		scrollframe.CanvasSize=UDim2.new(0,UIListLayout.AbsoluteContentSize.X+addres,0,0)
 
@@ -934,7 +934,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 			elseif MenuType:find('change') then
 				MainScrollingfr = MainFrame:FindFirstChild('Main'):FindFirstChild('MainScrolling')
 			end
-			
+
 			function MainTab:AddLabel(LabelName)
 				local SectionTitle = Instance.new("TextLabel")
 				local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
@@ -967,12 +967,12 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 
 				function Config:Delete()
 					SectionTitle:Destroy()
-				
+
 				end
 
 				return Config
 			end
-			
+
 			function MainTab:AddSection(SectionName:string,SectionHeader:string,SectionDescriptions:string,SectionIcons:string)
 				local SectionTitle = Instance.new("TextLabel")
 				local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
@@ -1013,6 +1013,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 
 				local function UpdateSiz()
 					local vs = 15
+					
 					for i,v in ipairs(SectionFrame:GetChildren()) do
 						if v:IsA('Frame') then
 							vs += (v.AbsoluteSize.Y or v.Size.Y.Scale) + UIListLayout.Padding.Offset
@@ -1130,11 +1131,11 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 				function SectionInfo:Update()
 					return UpdateSiz()
 				end
-				
+
 				function SectionInfo:AddLabel(LabelName)
 					local SectionTitle = Instance.new("TextLabel")
 					local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-			
+
 					SectionTitle.Name = "SectionTitle"
 					SectionTitle.Parent = SectionFrame
 					SectionTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1154,9 +1155,9 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 					UIAspectRatioConstraint.Parent = SectionTitle
 					UIAspectRatioConstraint.AspectRatio = 23.000
 					UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
-					
+
 					SectionInfo:Update()
-					
+
 					local Config = {}
 
 					function Config:Text(...)
@@ -1170,7 +1171,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 
 					return Config
 				end
-				
+
 				function SectionInfo:AddToggle(ToggleName:string,ToggleDefault:boolean,Callback)
 					local Toggle = Instance.new("Frame")
 					local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
@@ -1640,6 +1641,7 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 					end
 
 					scrolling_connectY(ScrollingFrame)
+					
 					local function join(target)
 						if typeof(target) ~= 'table' then
 							return tostring(Default or 'None')
@@ -2087,7 +2089,109 @@ function Alc:NewWindow(WindowName:string,WindowDescription:string,WindowLogo:str
 			TweenService:Create(CloseUI,TweenInfo.new(0.5),{Size = UDim2.fromScale(1,1)}):Play()
 		end
 	end
+	
+	if UserInputService.TouchEnabled then
+		task.spawn(function()
+			local Toggle = Instance.new("ScreenGui")
+			local Frames = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local UIStroke = Instance.new("UIStroke")
+			local logo = Instance.new("ImageLabel")
+			local DropShadow = Instance.new("ImageLabel")
 
+			Toggle.Name = "Toggle"
+			Toggle.Parent = Alc.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+			Toggle.ZIndexBehavior = Enum.ZIndexBehavior.Global
+			
+			Frames.Name = 'c4'
+			Frames.Parent = Toggle
+			Frames.AnchorPoint = Vector2.new(0.5, 0.5)
+			Frames.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+			Frames.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Frames.BorderSizePixel = 0
+			Frames.Position = UDim2.new(0.886243403, 0, 0.194968551, 0)
+			Frames.Size = UDim2.new(0.200000003, 0, 0.200000003, 0)
+			Frames.SizeConstraint = Enum.SizeConstraint.RelativeYY
+			Frames.ZIndex = 67
+
+			UICorner.Parent = Frames
+
+			UIStroke.Color = Color3.fromRGB(121, 121, 121)
+			UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			UIStroke.Parent = Frames
+
+			logo.Name = "logo"
+			logo.Parent = Frames
+			logo.AnchorPoint = Vector2.new(0.5, 0.5)
+			logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			logo.BackgroundTransparency = 1.010
+			logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			logo.BorderSizePixel = 0
+			logo.Position = UDim2.new(0.5, 0, 0.5, 0)
+			logo.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
+			logo.ZIndex = 68
+			logo.Image = WindowLogo
+
+			DropShadow.Name = "DropShadow"
+			DropShadow.Parent = Frames
+			DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+			DropShadow.BackgroundTransparency = 1.000
+			DropShadow.BorderSizePixel = 0
+			DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+			DropShadow.Size = UDim2.new(1, 47, 1, 47)
+			DropShadow.ZIndex = 66
+			DropShadow.Image = "rbxassetid://6015897843"
+			DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+			DropShadow.ImageTransparency = 0.500
+			DropShadow.ScaleType = Enum.ScaleType.Slice
+			DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+			
+			local dragToggle = false
+			local dragStart = nil
+			local startPos = nil
+			
+			local old = Frames.Position
+			local function dInput(input)
+				local delta = input.Position - dragStart
+				local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+					startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+				game:GetService('TweenService'):Create(Frames, TweenInfo.new(dragSpeed), {Position = position}):Play()
+			end
+			
+			local but = cretate_button(Frames)
+			but.ZIndex = 68
+			but.MouseButton1Click:Connect(function()
+				if old == Frames.Position then
+					valUI = not valUI
+					ToggleUI(valUI)
+				end
+			end)
+			but.InputBegan:Connect(function(input)
+				if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+					dragToggle = true
+					dragStart = input.Position
+					startPos = Frames.Position
+					old = Frames.Position
+					input.Changed:Connect(function()
+						if input.UserInputState == Enum.UserInputState.End then
+							dragToggle = false
+						end
+					end)
+				end
+			end)
+
+		
+
+			UserInputService.InputChanged:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+					if dragToggle then
+						dInput(input)
+					end
+				end
+			end)
+		end)
+	end
+	
 	local function updateInput(input)
 		local delta = input.Position - dragStart
 		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
